@@ -45,4 +45,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Other
 
 > [!NOTE]
-> Some HTTP methods were refactored to work with [Next.js](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) recommendations
+> Some HTTP methods were refactored to work with [Next.js'](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) best practices
