@@ -1,5 +1,17 @@
 # Blog full stack API test
 
+<!--toc:start-->
+
+- [Blog full stack API test](#blog-full-stack-api-test)
+  - [How to](#how-to)
+    - [Locally](#locally)
+      - [Requirements](#requirements)
+      - [Install packages](#install-packages)
+    - [Run](#run)
+  - [Other](#other)
+
+<!--toc:end-->
+
 ## How to
 
 Clone this repository locally or test the application directly on its deploy url.
@@ -13,7 +25,8 @@ Clone and setup the following:
 This APP works with `postgresql` for data persistence.
 Make sure to have it locally installed and with a server up and running.
 
-For local testing make sure to add your credentials inside the `.env.local` file.
+For local testing make sure to add your credentials inside a `.env.local` file.
+Check `env.local.example` for an example structure
 
 ```env
 DATABASE_URL="postgres://your_username:your_password@localhost:5432/your_database_name"
@@ -32,7 +45,7 @@ cd blog-api
 npm init
 ```
 
-### RUN
+### Run
 
 ```bash
 npm run dev
