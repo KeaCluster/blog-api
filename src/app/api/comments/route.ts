@@ -4,7 +4,7 @@ import {
   createComment,
   updateComment,
   deleteComment,
-} from "./comments/comments.controller";
+} from "./comments.controller";
 
 export async function GET(request: NextRequest) {
   return getComments(request);
