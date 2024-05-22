@@ -1,3 +1,5 @@
+"use client";
+
 interface CommentProps {
   id: number;
   email: string;
@@ -6,16 +8,22 @@ interface CommentProps {
   onDelete: (id: number) => void;
 }
 
-const Comment = ({ id, email, text, onEdit, onDelete }): CommentProps => {
+const Comment = ({ id, email, text, onEdit, onDelete }: CommentProps) => {
   return (
-    <div className="comment">
-      <p>{email}</p>
-      <p>{text}</p>
-      <div>
-        <button onClick={() => onEdit(id)} className="edit-button">
+    <div className="p-4 mb-4 border rounded border-gray-300">
+      <p className="font-bold">{email}</p>
+      <p className="mt-2">{text}</p>
+      <div className="mt-4 space-x-2">
+        <button
+          onClick={() => onEdit(id)}
+          className="text-blue-500 hover:underline"
+        >
           Edit
         </button>
-        <button onClick={() => onDelete(id)} className="delete-button">
+        <button
+          onClick={() => onDelete(id)}
+          className="text-red-500 hover:underline"
+        >
           Delete
         </button>
       </div>

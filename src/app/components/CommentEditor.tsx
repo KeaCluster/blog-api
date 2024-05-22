@@ -41,7 +41,7 @@ const CommentEditor = ({ onSubmit }: CommentEditorProps) => {
         <div className="w-full p-2 flex justify-end">
           <button
             type="submit"
-            className=" m-4 p-3 w-24 border border-black bg-gray-200 text-black rounded"
+            className=" my-4 p-3 w-24 border border-black bg-gray-200 text-black rounded"
           >
             Comment
           </button>
