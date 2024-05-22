@@ -1,6 +1,7 @@
 // Previously declared controllers
 
 // GET all
+/*
 async function getComments(req, res) {
   try {
     const comments = await Comment.findAll();
@@ -54,3 +55,5 @@ async function getComment(req, res, next) {
     return res.status(500).json({ message: err.message });
   }
 }
+
+*/

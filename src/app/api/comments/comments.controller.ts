@@ -2,43 +2,57 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 
 // GET all
-export async function getComments(req: NextApiRequest, res: NextApiResponse) {
+export const getComments = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+) => {
   try {
-    const comments = await prisma.comment.findAll();
+    const comments = await prisma.comment.findMany();
     res.status(200).json(comments);
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ error: "Failed to fetch comments" });
   }
-}
+};
 
 // POST
-export async function createComment(req: NextApiRequest, res: NextApiResponse) {
+export const createComment = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+) => {
   try {
-    const { email, text } = req.body; // destructuring
-    const newComment = await prisma.comment.create({ email, text });
+    const { email, text } = req.body;
+    const newComment = await prisma.comment.create({
+      data: { email, text },
+    });
     res.status(201).json(newComment);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to submit comment " });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create comment" });
   }
-}
+};
 
 // PUT
-export async function updateComment(req: NextApiRequest, res: NextApiResponse) {
+export const updateComment = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+) => {
   try {
     const { id } = req.query;
     const { email, text } = req.body;
-    const comment = await prisma.comment.update({
+    const updatedComment = await prisma.comment.update({
       where: { id: Number(id) },
       data: { email, text },
     });
-    res.status(200).json(comment);
-  } catch (err) {
+    res.status(200).json(updatedComment);
+  } catch (error) {
     res.status(500).json({ error: "Failed to update comment" });
   }
-}
+};
 
 // DELETE
-export async function deleteComment(req: NextApiRequest, res: NextApiResponse) {
+export const deleteComment = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+) => {
   try {
     const { id } = req.query;
     await prisma.comment.delete({
@@ -48,4 +62,4 @@ export async function deleteComment(req: NextApiRequest, res: NextApiResponse) {
   } catch (error) {
     res.status(500).json({ error: "Failed to delete comment" });
   }
-}
+};

@@ -1,5 +1,7 @@
-import { Sequelize } from "sequelize";
+//import { Sequelize } from "sequelize";
+// Prev used with sequelizer
 
+/*
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   // New config for an actual deploy
@@ -13,3 +15,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 });
 
 export default sequelize;
+*/

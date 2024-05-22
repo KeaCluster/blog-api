@@ -6,10 +6,7 @@ import {
   deleteComment,
 } from "./comments/comments.controller";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
 
   switch (method) {
@@ -27,7 +24,9 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);
-      res.status(405).end(`Method ${method} not allowed`);
+      res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
-}
+};
+
+export default handler;

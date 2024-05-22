@@ -26,10 +26,12 @@ const Main = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(comment),
     });
+
     if (res.ok) {
       const newComment = await res.json();
-      // Sets prev state of comments and appends new comment
       setComments([...comments, newComment]);
+    } else {
+      console.error("Failed to add comment");
     }
   };
   const handleEditComment = async (
@@ -41,12 +43,15 @@ const Main = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedComment),
     });
+
     if (res.ok) {
       const updated = await res.json();
       setComments(
         comments.map((comment) => (comment.id === id ? updated : comment)),
       );
       setEditingComment(null);
+    } else {
+      console.error("Failed to edit comment");
     }
   };
 
@@ -57,6 +62,8 @@ const Main = () => {
 
     if (res.ok) {
       setComments(comments.filter((comment) => comment.id !== id));
+    } else {
+      console.error("Failed to delete comment");
     }
   };
 
