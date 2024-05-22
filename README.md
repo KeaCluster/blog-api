@@ -35,6 +35,8 @@ DATABASE_URL="postgres://your_username:your_password@localhost:5432/your_databas
 The name of the database doesn't matter. So long as it's empty.
 With `pg` and `pg-hstore` the database will be automatically used.
 
+Check the port for your local postgres port in use and modify if needed.
+
 #### Install packages
 
 After cloning `cd` into the repo
