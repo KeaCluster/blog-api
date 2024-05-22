@@ -1,65 +1,67 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 // GET all
-export const getComments = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+export const getComments = async (request: NextRequest) => {
   try {
     const comments = await prisma.comment.findMany();
-    res.status(200).json(comments);
+    return NextResponse.json(comments);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch comments" });
+    return NextResponse.json(
+      { error: "Failed to fetch comments" },
+      { status: 500 },
+    );
   }
 };
 
 // POST
-export const createComment = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+export const createComment = async (request: NextRequest) => {
   try {
-    const { email, text } = req.body;
+    const { email, text } = await request.json();
     const newComment = await prisma.comment.create({
       data: { email, text },
     });
-    res.status(201).json(newComment);
+    return NextResponse.json(newComment, { status: 201 });
   } catch (error) {
-    res.status(500).json({ error: "Failed to create comment" });
+    return NextResponse.json(
+      { error: "Failed to create comment" },
+      { status: 500 },
+    );
   }
 };
 
 // PUT
-export const updateComment = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+export const updateComment = async (request: NextRequest) => {
   try {
-    const { id } = req.query;
-    const { email, text } = req.body;
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    const { email, text } = await request.json();
     const updatedComment = await prisma.comment.update({
       where: { id: Number(id) },
       data: { email, text },
     });
-    res.status(200).json(updatedComment);
+    return NextResponse.json(updatedComment);
   } catch (error) {
-    res.status(500).json({ error: "Failed to update comment" });
+    return NextResponse.json(
+      { error: "Failed to update comment" },
+      { status: 500 },
+    );
   }
 };
 
 // DELETE
-export const deleteComment = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+export const deleteComment = async (request: NextRequest) => {
   try {
-    const { id } = req.query;
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
     await prisma.comment.delete({
       where: { id: Number(id) },
     });
-    res.status(204).end();
+    return NextResponse.json({}, { status: 204 });
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete comment" });
+    return NextResponse.json(
+      { error: "Failed to delete comment" },
+      { status: 500 },
+    );
   }
 };

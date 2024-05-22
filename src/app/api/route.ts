@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest } from "next/server";
 import {
   getComments,
   createComment,
@@ -6,27 +6,18 @@ import {
   deleteComment,
 } from "./comments/comments.controller";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { method } = req;
+export async function GET(request: NextRequest) {
+  return getComments(request);
+}
 
-  switch (method) {
-    case "GET":
-      await getComments(req, res);
-      break;
-    case "POST":
-      await createComment(req, res);
-      break;
-    case "PUT":
-      await updateComment(req, res);
-      break;
-    case "DELETE":
-      await deleteComment(req, res);
-      break;
-    default:
-      res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);
-      res.status(405).end(`Method ${method} Not Allowed`);
-      break;
-  }
-};
+export async function POST(request: NextRequest) {
+  return createComment(request);
+}
 
-export default handler;
+export async function PUT(request: NextRequest) {
+  return updateComment(request);
+}
+
+export async function DELETE(request: NextRequest) {
+  return deleteComment(request);
+}
