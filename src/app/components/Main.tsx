@@ -12,8 +12,12 @@ const Main = () => {
 
   useEffect(() => {
     fetch("/api/comments")
-      .then((res) => res.json())
-      .then((data) => setComments(data));
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch comments");
+        return res.json();
+      })
+      .then((data) => setComments(data))
+      .catch((err) => console.error("Error: fetching comments", err));
   }, []);
 
   const handleAddComment = async (comment: { email: string; text: string }) => {
