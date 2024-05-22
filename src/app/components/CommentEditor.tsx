@@ -29,14 +29,14 @@ const CommentEditor = ({ onSubmit }: CommentEditorProps) => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
-          className="w-full p-2 border border-gray-800 rounded h-8"
+          className="w-full p-2 border border-gray-800 rounded h-8 text-black"
         />
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Add a comment ..."
           required
-          className="w-full p-2 border border-gray-800 rounded"
+          className="w-full p-2 border border-gray-800 rounded text-black"
         />
         <div className="w-full p-2 flex justify-end">
           <button
