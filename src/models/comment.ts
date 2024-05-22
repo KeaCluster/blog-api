@@ -1,3 +1,5 @@
+// Prev defined model (sequelizer)
+/*
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "@/lib/sequelize";
 
@@ -40,7 +42,7 @@ Comment.init(
     tableName: "comments",
   },
 );
-
+*/
 // Previously defined Model (not TS oriented)
 // Docs for the new one: https://sequelize.org/docs/v6/other-topics/typescript/
 /*
