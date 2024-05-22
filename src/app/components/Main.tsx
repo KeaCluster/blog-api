@@ -34,6 +34,7 @@ const Main = () => {
       console.error("Failed to add comment");
     }
   };
+
   const handleEditComment = async (
     id: number,
     updatedComment: { email: string; text: string },

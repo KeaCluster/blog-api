@@ -10,7 +10,7 @@ interface CommentProps {
 
 const Comment = ({ id, email, text, onEdit, onDelete }: CommentProps) => {
   return (
-    <div className="p-4 mb-4 border rounded border-gray-300">
+    <div className="p-4 mb-4">
       <p className="font-bold">{email}</p>
       <p className="mt-2">{text}</p>
       <div className="mt-4 space-x-2">
@@ -22,7 +22,7 @@ const Comment = ({ id, email, text, onEdit, onDelete }: CommentProps) => {
         </button>
         <button
           onClick={() => onDelete(id)}
-          className="text-red-500 hover:underline"
+          className="text-blue-500 hover:underline"
         >
           Delete
         </button>

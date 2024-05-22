@@ -57,7 +57,7 @@ export const deleteComment = async (request: NextRequest) => {
     await prisma.comment.delete({
       where: { id: Number(id) },
     });
-    return NextResponse.json({}, { status: 204 });
+    return NextResponse.json({}, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete comment" },
