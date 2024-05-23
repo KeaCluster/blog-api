@@ -4,9 +4,9 @@
 
 - [Blog full stack API test](#blog-full-stack-api-test)
   - [How to](#how-to)
-    - [Locally](#locally)
-      - [Requirements](#requirements)
-      - [Install packages](#install-packages)
+    - [Requirements](#requirements)
+    - [Packages and setup](#packages-and-setup)
+    - [Recommended](#recommended)
     - [Run](#run)
   - [Other](#other)
 
@@ -14,43 +14,58 @@
 
 ## How to
 
-Clone this repository locally or test the application directly on its deploy url.
-
-### Locally
+- Clone the repository locally and setup a DB
+- Or test the application directly through the deploy.
 
 Clone and setup the following:
 
-#### Requirements
+### Requirements
 
-This APP works with `postgresql` for data persistence.
-For just some text you don't need the actual `postgresql` server installed.
-The deploy test is using a vercel-hosted `psql` database which works with remote connections.
+- Database
+  - Depends on your setup
+  - Install a compatible `postgresql` server
+  - Setup a remote vercel-hosted db (recommended).
+- Node
 
-This definition is set inside `package.json` like so:
+### Packages and setup
+
+After cloning, `cd` into the repo
+and install dependencies (if using linux you might need to sudo it).
+
+```sh
+cd blog-api
+npm install
+```
+
+The app implements `postgresql` for data persistence.
+For just some tests you don't need an actual `postgresql` server installed in your pc.
+I recommend setting up a remote vercel-hosted db for compatibility.
+The deploy implements that.
+
+For a production build,
+this config is set inside `package.json` like so:
 
 ```json
 {
-  ...
   "scripts": {
-    ...
     "build": "prisma generate && next build",
     "postinstall": "prisma generate"
-  },
-  ...
+  }
 }
 ```
 
 Check [this](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/vercel-caching-issue) resource for more info
 
-If you want to make your own DB, I recommend the following:
+### Recommended
 
-- Fork this repo and make a new Vercel linked to it
-- Install the `Vercel CLI` locally as a global resource
-- Pull your latest env variables from Vercel after initializing a `postgresql` db under **Storage**
+I recommend the following:
+
+- Fork this repo and make a new Vercel app linked to it
+- In your dev environment, install the `Vercel CLI` as a global resource
+- Pull your latest `env` variables from Vercel after initializing a `postgresql` db under **Storage**
 - Push the local Prisma scheme and initialize the db remotely
 - Check with `npx prisma studio`
 - Update the prisma client if you're editing or modifying the schema file
-- Run dev
 
 ```sh
 # Install vercel cli
@@ -71,23 +86,13 @@ npx prisma generate
 
 ```
 
-#### Install packages
-
-After cloning `cd` into the repo
-And install necessary dependencies (if using linux you might need to sudo it).
-
-```sh
-cd blog-api
-npm install
-```
-
 ### Run
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
